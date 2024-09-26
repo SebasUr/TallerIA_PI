@@ -1,0 +1,31 @@
+{% extends 'base.html' %} 
+{% block content %}
+<form action="">
+    <div class="mb-3">
+        <label for="searchMovie" class="form-label">
+            Ingresa el prompt para buscar películas:
+        </label>
+        <input type="text" class="form-control" name="searchMovie"/>
+    </div>
+    <button type="submit" class="btn btn-primary">Buscar</button>
+</form>
+{% if searchTerm %}
+    <p>Searching for: {{ searchTerm }}</p> 
+    <div class="row g-4 w-25">
+        {% if movie %}    
+        <div class="col">
+            <div class="card">
+                <img src="{{ movie.image.url }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">{{ movie.title }}</h5>
+                    <p class="card-text">{{ movie.description }}</p>
+                </div>
+            </div>
+        </div>    
+        {% else %} <p>Ninguna película fue encontrada {{ searchTerm }}</p>
+        {% endif %}
+    </div>
+{% else %}
+    <p>Introduce un texto válido.</p>
+{% endif %}
+{% endblock content %}
